@@ -9,35 +9,37 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "bookkeeping_record")
+public class BookkeepingRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, length = 20)
     private String phone;
 
-    @Column(nullable = false, length = 255)
-    private String password;
-
-    @Column(nullable = false, length = 50)
-    private String name;
-
-    @Column(nullable = false)
-    private Integer age;
+    @Column(nullable = false, length = 10)
+    private String type;
 
     @Column(nullable = false, length = 100)
-    private String occupation;
+    private String category;
 
-    @Column(nullable = false, length = 10)
-    private String gender;
+    @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal amount;
+
+    @Column(name = "record_date", nullable = false)
+    private LocalDate recordDate;
+
+    @Column(length = 255)
+    private String remark;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

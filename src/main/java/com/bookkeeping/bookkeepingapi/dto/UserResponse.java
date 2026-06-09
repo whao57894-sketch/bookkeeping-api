@@ -9,10 +9,20 @@ import lombok.Getter;
 public class UserResponse {
 
     private Long id;
-    private String username;
-    private String email;
+    private String phone;
+    private String name;
+    private Integer age;
+    private String occupation;
+    private String gender;
 
     public static UserResponse from(User user) {
-        return new UserResponse(user.getId(), user.getUsername(), user.getEmail());
+        return new UserResponse(
+                user.getId(),
+                user.getPhone(),
+                user.getName(),
+                user.getAge(),
+                user.getOccupation(),
+                user.getGender()
+        );
     }
 }
