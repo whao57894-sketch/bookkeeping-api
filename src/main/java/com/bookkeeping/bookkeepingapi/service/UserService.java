@@ -88,6 +88,10 @@ public class UserService {
         return UserResponse.from(userRepository.save(user));
     }
 
+    public void delete(String phone) {
+        userRepository.delete(findUserByPhone(phone));
+    }
+
     private User findUserByPhone(String phone) {
         if (StringUtils.isBlank(phone)) {
             throw new IllegalArgumentException("手机号不能为空");

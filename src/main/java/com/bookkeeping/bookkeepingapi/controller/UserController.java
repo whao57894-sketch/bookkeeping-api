@@ -8,6 +8,7 @@ import com.bookkeeping.bookkeepingapi.dto.UserResponse;
 import com.bookkeeping.bookkeepingapi.service.BookkeepingService;
 import com.bookkeeping.bookkeepingapi.service.UserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +61,16 @@ public class UserController {
     public ApiResponse<UserResponse> updateUser(@PathVariable String phone, @RequestBody UpdateUserRequest request) {
         try {
             return ApiResponse.ok("保存成功", userService.update(phone, request));
+        } catch (IllegalArgumentException ex) {
+            return ApiResponse.fail(ex.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{phone}")
+    public ApiResponse<Void> deleteUser(@PathVariable String phone) {
+        try {
+            userService.delete(phone);
+            return ApiResponse.ok("\u6ce8\u9500\u6210\u529f", null);
         } catch (IllegalArgumentException ex) {
             return ApiResponse.fail(ex.getMessage());
         }
