@@ -10,5 +10,7 @@ public interface BookkeepingRecordRepository extends JpaRepository<BookkeepingRe
 
     List<BookkeepingRecord> findByPhoneAndRecordDateBetweenOrderByRecordDateDescIdDesc(String phone, LocalDate start, LocalDate end);
 
+    List<BookkeepingRecord> findByPhoneAndRecordDateStartingWith(String phone, String datePrefix);
+
     long countByPhone(String phone);
 }
